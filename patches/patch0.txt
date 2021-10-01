@@ -12526,7 +12526,7 @@ diff --strip-trailing-cr -NBbaur squashfs-tools/LZMA/lzma465/history.txt squashf
 +
 +4.57           2007-12-12
 +-------------------------
-+- Speed optimizations in Ñ++ LZMA Decoder. 
++- Speed optimizations in ï¿½++ LZMA Decoder. 
 +- Small changes for more compatibility with some C/C++ compilers.
 +
 +
@@ -38123,7 +38123,7 @@ diff --strip-trailing-cr -NBbaur squashfs-tools/Makefile squashfs-tools-patched/
  CFLAGS += $(EXTRA_CFLAGS) $(INCLUDEDIR) -D_FILE_OFFSET_BITS=64 \
  	-D_LARGEFILE_SOURCE -D_GNU_SOURCE -DCOMP_DEFAULT=\"$(COMP_DEFAULT)\" \
 -	-Wall
-+	-Wall -Werror #-DSQUASHFS_TRACE
++	-Wall -Werror -fcommon #-DSQUASHFS_TRACE
  
  LIBS = -lpthread -lm
  ifeq ($(GZIP_SUPPORT),1)
@@ -38487,7 +38487,7 @@ diff --strip-trailing-cr -NBbaur squashfs-tools/unsquashfs.c squashfs-tools-patc
 +    }
 +
 +    // CJH: Notify if endianess is different
-+    if(swap)
++    if(swap) {
 +        ERROR("Reading a different endian SQUASHFS filesystem on %s\n", source);
  
  	/*
@@ -38505,7 +38505,7 @@ diff --strip-trailing-cr -NBbaur squashfs-tools/unsquashfs.c squashfs-tools-patc
  	if(sBlk_4.s_magic == SQUASHFS_MAGIC && sBlk_4.s_major == 4 &&
  			sBlk_4.s_minor == 0) {
 +     */
-+
++		}
 +     // CJH: Added s_major override
 +     if((sBlk_4.s_major == 4 && sBlk_4.s_minor == 0) ||
 +        (override.s_major == 4)) {
